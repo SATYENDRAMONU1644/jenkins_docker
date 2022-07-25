@@ -4,12 +4,12 @@ pipeline {
     stages {
         stage('scm') {
             steps {
-                git 'https://github.com/UJJWALJOSHI001/jenkins_sep.git'
+                git 'https://github.com/SATYENDRAMONU1644/jenkins_docker.git'
             }
         }
         stage('docker build') {
             steps {
-                sh 'sudo docker build  -t  ashishshiv2606/pipeline:v1  . '
+                sh 'sudo docker build  -t  satyendramonu1644/pipeline:v1  . '
             }
         }
         stage('docker images') {
@@ -24,7 +24,7 @@ pipeline {
         }
         stage('docker run') {
             steps {
-                sh 'sudo docker run -d --name pipe1  -p 8099:80 ashishshiv2606/pipeline:v1'
+                sh 'sudo docker run -d --name pipe1  -p 8099:80 satyendramonu1644/pipeline:v1'
             }
         }
         stage('docker login') {
