@@ -4,40 +4,40 @@ pipeline {
     stages {
         stage('scm') {
             steps {
-                git 'https://github.com/SATYENDRAMONU1644/jenkins_docker.git'
+                git branch: 'main', url: 'https://github.com/SATYENDRAMONU1644/jenkins_docker.git'
             }
         }
-        stage('docker build') {
-            steps {
-                sh 'sudo docker build  -t  satyendramonu1644/pipeline:v1  . '
+    stage('docker build') {
+        steps {
+                sh 'sudo docker build -t satyendramonu1644/pipeline:v1 .'
             }
         }
-        stage('docker images') {
-            steps {
+    stage('docker images') {
+        steps {
                 sh 'sudo docker images'
             }
         }
-        stage('docker rm') {
+    stage('docker rm') {
             steps {
                 sh 'sudo docker rm -f pipe1'
             }
         }
-        stage('docker run') {
+    stage('docker run') {
             steps {
                 sh 'sudo docker run -d --name pipe1  -p 8099:80 satyendramonu1644/pipeline:v1'
             }
         }
-        stage('docker login') {
+    stage('docker login') {
             steps {
                 sh 'sudo docker login -u ${dockerhub_username} -p ${dockerhub_password}'
             }
         }
-        stage('docker push') {
+    stage('docker push') {
             steps {
-                sh 'sudo docker push ashishshiv2606/pipeline:v1'
+                sh 'sudo docker push satyendramonu1644/pipeline:v1'
             }
         }
-        stage('print success') {
+    stage('print success') {
             steps {
                 sh 'echo success'
             }
